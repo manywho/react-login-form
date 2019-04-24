@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import registeredComponents from '../constants/registeredComponents';
 import ILoginProps from './interfaces/ILoginProps';
-import { getWait } from './wait';
 
 declare var manywho: any;
 
@@ -114,10 +112,6 @@ class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     render() {
-        manywho.log.info('Rendering Login');
-
-        const Wait = getWait();
-
         let faults = null;
         if (this.state.faults) {
             faults = (
@@ -191,7 +185,6 @@ class Login extends React.Component<ILoginProps, ILoginState> {
                                     Login
                                 </button>
                             </div>
-                            <Wait isVisible={this.state.loading !== null} message={this.state.loading && this.state.loading.message} />
                             {faults}
                         </div>
                     </div>
@@ -200,9 +193,5 @@ class Login extends React.Component<ILoginProps, ILoginState> {
         );
     }
 }
-
-manywho.component.register(registeredComponents.LOGIN, Login, ['mw_login']);
-
-export const getLogin = () : typeof Login => manywho.component.getByName(registeredComponents.LOGIN);
 
 export default Login;
