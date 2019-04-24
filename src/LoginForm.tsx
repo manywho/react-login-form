@@ -2,8 +2,6 @@ import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import ILoginProps from './interfaces/ILoginProps';
 
-declare var manywho: any;
-
 interface ILoginState {
     username?: string;
     password?: string;
@@ -15,7 +13,7 @@ interface ILoginState {
     faults?: null;
 }
 
-class Login extends React.Component<ILoginProps, ILoginState> {
+class LoginForm extends React.Component<ILoginProps, ILoginState> {
 
     constructor(props) {
         super(props);
@@ -54,48 +52,6 @@ class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     onSubmit() {
-        if (
-            !manywho.utils.isNullOrWhitespace(this.state.username) && 
-            !manywho.utils.isNullOrWhitespace(this.state.password)
-        ) {
-            this.setState({ loading: { message: '' } });
-
-            manywho.ajax.login(
-                this.props.loginUrl, 
-                this.state.username, 
-                this.state.password, 
-                null, 
-                null, 
-                this.props.stateId, 
-                manywho.utils.extractTenantId(this.props.flowKey),
-            )
-            .then((response) => {
-                manywho.state.setLogin(null, this.props.flowKey);
-                manywho.authorization.setAuthenticationToken(response, this.props.flowKey);
-
-                if (this.props.callback) {
-                    this.props.callback.execute.apply(
-                        this.props.callback.context, 
-                        [this.props.callback].concat(this.props.callback.args),
-                    );
-                }
-            })
-            .fail((error) => {
-                this.setState({
-                    loading: null,
-                    password: '',
-                    faults: error.responseText,
-                });
-            });
-
-        } else {
-
-            if (manywho.utils.isNullOrWhitespace(this.state.username))
-                this.setState({ usernameError: 'This field is required.' });
-
-            if (manywho.utils.isNullOrWhitespace(this.state.password))
-                this.setState({ passwordError: 'This field is required.' });
-        }
     }
 
     componentDidMount() {
@@ -131,10 +87,10 @@ class Login extends React.Component<ILoginProps, ILoginState> {
         let usernameClassName = 'form-group';
         let passwordClassName = 'form-group';
 
-        if (!manywho.utils.isNullOrWhitespace(this.state.usernameError))
+        if (!this.state.usernameError)
             usernameClassName += ' has-error';
 
-        if (!manywho.utils.isNullOrWhitespace(this.state.passwordError))
+        if (!this.state.passwordError)
             passwordClassName += ' has-error';
 
         return (
@@ -194,4 +150,4 @@ class Login extends React.Component<ILoginProps, ILoginState> {
     }
 }
 
-export default Login;
+export default LoginForm;
