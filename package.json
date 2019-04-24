@@ -1,8 +1,8 @@
 {
   "name": "react-login-form",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A generic yet configurable stateless react component for a functioning login form",
-  "main": "src/index.ts",
+  "main": "dist/react-login-form.ts",
   "scripts": {
     "dist": "webpack",
     "preinstall": "webpack",
