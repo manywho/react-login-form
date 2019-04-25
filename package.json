@@ -7,7 +7,7 @@
         "dist": "webpack",
         "preinstall": "webpack",
         "test": "jest",
-        "lint": "eslint src/**"
+        "precommit": "lint-staged"
     },
     "repository": {
         "type": "git",
@@ -65,8 +65,7 @@
         "*.ts": "eslint",
         "*.tsx": [
             "eslint",
-            "git add",
-            "jest --findRelatedTests --bail"
+            "git add"
         ]
     }
 }

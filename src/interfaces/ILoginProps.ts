@@ -6,6 +6,7 @@ interface ILoginProps extends IComponentProps {
         context: any;
         args: any;
     };
+    onSubmit: Function;
     loginUrl: string;
     stateId: string;
     username: string;
