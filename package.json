@@ -2,7 +2,7 @@
     "name": "@boomi/react-login-form",
     "version": "0.1.0",
     "description": "A generic yet configurable stateless react component for a functioning login form",
-    "main": "dist/react-login-form.ts",
+    "main": "dist/react-login-form.js",
     "scripts": {
         "dist": "webpack",
         "preinstall": "webpack",
