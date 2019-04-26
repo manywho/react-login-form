@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: './src/LoginForm.tsx',
+    devtool: 'source-map',
     mode: 'none',
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
@@ -9,6 +10,7 @@ module.exports = {
     output: {
         filename: 'react-login-form.js',
         path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'umd',
     },
     module: {
         rules: [
