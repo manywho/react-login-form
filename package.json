@@ -7,7 +7,9 @@
         "dist": "webpack",
         "start": "webpack --watch=true",
         "test": "jest",
-        "precommit": "lint-staged"
+        "precommit": "lint-staged",
+        "prepublishOnly": "npm run dist",
+        "prepack": "npm run dist"
     },
     "repository": {
         "type": "git",
@@ -47,10 +49,14 @@
         "ts-jest": "^24.0.2",
         "typescript": "^3.4.4",
         "webpack": "^4.30.0",
-        "webpack-cli": "^3.3.1"
+        "webpack-cli": "^3.3.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
     },
     "dependencies": {
-        "lint": "^1.1.2",
+        "lint": "^1.1.2"
+    },
+    "peerDependencies": {
         "react": "^16.8.6",
         "react-dom": "^16.8.6"
     },
