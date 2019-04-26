@@ -37,3 +37,9 @@ To contribute to this project you can submit a pull request.
 Then inside your own local project:
 * `npm link @boomi/react-login-form`
 * And follow usage instructions decribed above
+
+#### Running Jest tests
+
+```sh
+npm run test
+```
