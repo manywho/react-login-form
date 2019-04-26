@@ -1,24 +1,22 @@
 const path = require('path');
 
 module.exports = {
-    watch: true,
     entry: './src/LoginForm.tsx',
+    mode: 'none',
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
         filename: 'react-login-form.js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'react-keyed-file-browser',
-        libraryTarget: 'umd',
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
-        ]
-    }
-  };
+        ],
+    },
+};
