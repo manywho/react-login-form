@@ -1,12 +1,5 @@
 {
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "modules": true
-        }
-    },
     "plugins": [
         "@typescript-eslint"
     ],
@@ -17,9 +10,13 @@
         "jest": true
     },
     "extends": [
+        "airbnb-typescript",
         "plugin:react/recommended"
     ],
     "globals": {
+        "manywho": false,
+        "$": false,
+        "ga": false,
         "module": false,
         "jest": false,
         "expect": false,
@@ -29,7 +26,7 @@
     },
     "rules": {
         "semi": 2,
-        "indent": ["error", "tab"],
+        "indent": [2, 4],
         "max-len": [2, 150],
         "no-trailing-spaces": 0,
         "brace-style": [ 2, "1tbs", { "allowSingleLine": true }],
@@ -51,12 +48,13 @@
         "react/prop-types": [0],
         "react/destructuring-assignment": 0,
         "react/jsx-filename-extension": 0,
-        "react/jsx-indent": ["error", "tab"],
-        "react/jsx-indent-props": ["error", "tab"],
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
         "react/no-unescaped-entities": 0,
         "react/no-access-state-in-setstate": 0,
         "react/button-has-type": 0,
         "jsx-a11y/label-has-associated-control": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
         "jsx-a11y/label-has-for": 0,
         "react/no-array-index-key": 0
     }

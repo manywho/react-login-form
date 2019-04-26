@@ -8,11 +8,12 @@ const props = {
         context: {},
         args: {},
     },
+    onSubmit: jest.fn,
     loginUrl: 'test',
     stateId: 'test',
     username: 'test',
     directoryName: 'test',
-}
+};
 
 describe('Login form component behaviour', () => {
     test('Component renders without crashing', () => {
