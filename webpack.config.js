@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: './src/LoginForm.tsx',
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     mode: 'none',
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],

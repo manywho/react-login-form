@@ -5,6 +5,8 @@ const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit }) =
 
     const username = React.createRef<HTMLInputElement>();
     const password = React.createRef<HTMLInputElement>();
+
+    const [displayError, toggleErrorDisplay] = React.useState(error || false);
     
     const onLogin = () => {
         const loginPayload = {
@@ -31,11 +33,11 @@ const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit }) =
                                     {directoryName}
                                 </strong>
                             </p>
-                            {error ? 
+                            {error && displayError ? 
                                 (
                                     <div className="center-notifications notifications">
                                         <div className="notification alert alert-danger">
-                                            <button className="close">
+                                            <button onClick={() => toggleErrorDisplay(false)} className="close">
                                                 <span>{'\u00D7'}</span>
                                             </button>
                                             <span>{error}</span>
