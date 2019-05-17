@@ -1,19 +1,31 @@
 import * as React from 'react';
+import InputField from './form_fields/InputField';
 import ILoginProps from './interfaces/ILoginProps';
 
-const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit }) => {
+const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit, fieldConfig }) => {
 
-    const username = React.createRef<HTMLInputElement>();
-    const password = React.createRef<HTMLInputElement>();
+    const InputRefs = {};
 
     const [displayError, toggleErrorDisplay] = React.useState(error || false);
+
+    const fields = fieldConfig ? fieldConfig.map((field, index) => {
+        const ref = React.createRef<HTMLInputElement>();
+        InputRefs[field.type] = ref;
+        return (
+            <InputField
+                key={index}
+                type={field.type}
+                label={field.label}
+                maxLength={field.maxLength}
+                size={field.size}
+                ref={ref}
+            />
+        );
+    }) : null;
     
-    const onLogin = () => {
-        const loginPayload = {
-            username: username.current.value,
-            password: password.current.value,
-        };
- 
+    const onLogin = (e) => {
+        e.preventDefault();
+        const loginPayload = InputRefs;
         onSubmit(loginPayload);
     };
 
@@ -22,7 +34,7 @@ const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit }) =
             <div className="modal-backdrop full-height" />
             <div className="modal show">
                 <div className="modal-dialog">
-                    <div className="modal-content">
+                    <form onSubmit={onLogin} className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">Login</h4>
                         </div>
@@ -46,43 +58,14 @@ const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit }) =
                                 )
                                 : null
                             }
-                            <div>
-                                <label>
-                                    Username
-                                    <span className="input-required"> *</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    maxLength={255}
-                                    size={60}
-                                    className="form-control"
-                                    id="mw-username"
-                                    ref={username}
-                                />
-                                <span className="help-block" />
-                            </div>
-                            <div>
-                                <label>
-                                    Password
-                                    <span className="input-required"> *</span>
-                                </label>
-                                <input
-                                    type="password"
-                                    maxLength={255}
-                                    size={60}
-                                    className="form-control"
-                                    id="mw-password"
-                                    ref={password}
-                                />
-                                <span className="help-block" />
-                            </div>
+                            {fields}
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" onClick={onLogin}>
+                            <button className="btn btn-primary" type="submit">
                                 Login
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
