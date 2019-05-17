@@ -3,15 +3,7 @@ import { shallow } from 'enzyme';
 import LoginForm from '../src/LoginForm';
 
 const props = {
-    callback: {
-        execute: jest.fn,
-        context: {},
-        args: {},
-    },
     onSubmit: jest.fn,
-    loginUrl: 'test',
-    stateId: 'test',
-    username: 'test',
     directoryName: 'test',
 };
 
