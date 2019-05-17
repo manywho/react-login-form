@@ -18,6 +18,7 @@ const LoginForm: React.SFC<ILoginProps> = ({ directoryName, error, onSubmit, fie
                 label={field.label}
                 maxLength={field.maxLength}
                 size={field.size}
+                errorText={field.errorText}
                 ref={ref}
             />
         );
